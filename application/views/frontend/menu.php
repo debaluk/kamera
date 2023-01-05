@@ -15,8 +15,8 @@
 										
 										<li><a href="<?= base_url("kontak") ?>">Kontak Kami</a></li>
 										<?php
-										if ($this->session->userdata('customer_id')) {
-										?> <li><a href="<?= base_url("frontend/riwayat") ?>">Pesanan</a></li> <?php } ?>
+										if ($this->session->userdata('id_pelanggan')) {
+										?> <li><a href="<?= base_url("pesanan") ?>">Pesanan</a></li> <?php } ?>
 
 									</ul>
 								</div>

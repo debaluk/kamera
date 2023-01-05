@@ -27,7 +27,47 @@ class Akun extends CI_Controller {
 	}
 	public function proses_pendaftaran()
 	{
-		
+		$username = $this->db->escape_str($this->input->post('nama_user'));
+		$cariusername = $this->website->cek_Pelanggan($username); 
+		if ($cariusername)
+		{
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Nama user sudah terdaftar</div>');
+		}
+		else
+		{
+			//simpan
+			$data =[
+				'nama_user' => $this->input->post('nama_user'),
+				'password_user' => $this->input->post('password_user'),				
+				'nama_lengkap'=>$this->input->post('nama_lengkap'),	
+				'alamat_lengkap' => $this->input->post('alamat_lengkap'),	
+				'no_wa' => $this->input->post('no_wa'),
+				'email' => $this->input->post('email'),
+				'tgl_daftar' =>date("Y-m-d H:i:s")
+			];
+			$daftar=$this->website->daftarPelanggan($data);
+			if ($daftar)
+			{
+				$datalogin =[
+					'nama_user' => $this->input->post('nama_user'),		
+					'nama_lengkap'=>$this->input->post('nama_lengkap'),	
+					'alamat_lengkap' => $this->input->post('alamat_lengkap'),	
+					'no_wa' => $this->input->post('no_wa'),
+					'email' => $this->input->post('email'),
+					'id_pelanggan'=>$this->db->insert_id()
+				];
+				$this->session->set_userdata($datalogin);
+				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Berhasil Daftar</div>');
+				redirect(base_url('akun'));
+			}
+			else
+			{
+				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Gagal Daftar</div>');
+				$this->load->view('frontend/pendaftaran');
+			}
+			
+
+		}
 	}
 
 	public function login()
@@ -66,8 +106,9 @@ class Akun extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Logout Telah Berhasil. Silahkan Login</div>');
+		
 		redirect(base_url('akun/login'));
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Logout Telah Berhasil. Silahkan Login</div>');
 	}
 
 }

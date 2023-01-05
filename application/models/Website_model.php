@@ -22,7 +22,7 @@ class Website_model extends CI_Model
     {
        
         $this->db->from('kamera');
-        $this->db->where('stok','>', 0);
+        $this->db->where('status_tersedia', 0);
         $this->db->order_by('nama_kamera', 'asc'); 
         return $this->db->get()->result();
     }
@@ -79,6 +79,15 @@ class Website_model extends CI_Model
         $this->db->where('password_user',$katakunci);
         return $this->db->get()->row();
     }
+    //cek nama user sudah ada belum
+    public function cek_Pelanggan($namauser)
+    {
+    
+        $this->db->from('pelanggan');
+        $this->db->where('nama_user',$namauser);
+        return $this->db->get()->row();
+    }
+
     public function get_ProfilePelanggan($id)
     {
        

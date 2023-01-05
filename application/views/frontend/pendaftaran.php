@@ -34,32 +34,58 @@
 
                         <div class="card-body">
                             <form class="user" method="post" action="<?= base_url('akun/proses_pendaftaran') ?>">
-                                <?php echo $this->session->flashdata('message'); ?>
                                 <div class="form-group">
-                                    <label class="small mb-1" for="inputEmailAddress">Nama User</label>
-                                    <input class="form-control py-4" id="inputEmailAddress" type="text" name="nama_user" value="<?= set_value('nama_user'); ?>" placeholder="Masukan Nama User" />
-                                    <?= form_error('nama_user', ' <small class="text-danger">', '</small>') ?>
+                                    <label class="small mb-1" for="inputNama">Nama</label>
+                                    <input class="form-control py-4" id="nama_lengkap" type="text" name="nama_lengkap" value="" placeholder="Masukan Nama Lengkap" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputNIK">Alamat Lengkap</label>
+                                    <input class="form-control py-4" id="alamat_lengkap" type="text" name="alamat_lengkap" value="" placeholder="Masukan Alamat Lengkap" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputEmail">No. WA</label>
+                                    <input class="form-control py-4" id="no_wa" type="text" name="no_wa" value="" placeholder="Masukan Nomor WA" required="">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputAlamat">Email</label>
+                                    <input class="form-control py-4" id="email" type="text" name="email" value="" placeholder="Masukan Email" required="">
+                                                                    </div>
+
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputUsername">Nama User</label>
+                                    <input class="form-control py-4" id="nama_user" type="text" name="nama_user" value="" placeholder="Masukan Nama User" required="">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="inputPassword">Password</label>
+                                            <input class="form-control py-4" id="password_user" type="password" name="password_user" placeholder="Enter password" required="">
+                                         </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
+                                            <input class="form-control py-4" id="re_password_user" type="password" name="re_password_user" placeholder="Confirm Password" required="">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="small mb-1" for="inputPassword">Password</label>
-                                    <input class="form-control py-4" id="inputPassword" type="password" name="password" placeholder="Masukan password" />
-                                    <?= form_error('password', ' <small class="text-danger">', '</small>') ?>
-                                </div>
-                                
-                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                    <!--<a class="small" href="password.html">Forgot Password?</a>-->
-                                    <button class="btn btn-primary" type="submit">Login</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="card-footer text-center">
-                            <div class="small"><a href="<?= base_url('akun/pendaftaran'); ?>">Belum terdaftar? Yuk daftar dulu disini!</a></div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
         </div>
-   
+        
 	<?php $this->load->view("frontend/footer.php") ?>
 		
 </body>

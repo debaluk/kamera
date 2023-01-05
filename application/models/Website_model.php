@@ -52,21 +52,48 @@ class Website_model extends CI_Model
         return $this->db->get()->row();
     }
 
-    public function buatPeminjaman()
+    public function buatPeminjaman($data)
     {
         $query = $this->db->insert('peminjaman', $data);
 		return $query;
     }
     
-    public function uploadBuktiBayar()
+    public function uploadBuktiBayar($data)
     {
         $query = $this->db->insert('pembayaran', $data);
 		return $query;
     }
 
-    //login pelanggan
-
     //pendaftaran pelanggan
+    public function daftarPelanggan($data)
+    {
+        $query = $this->db->insert('pelanggan', $data);
+		return $query;
+    }
+    //login pelanggan
+    public function get_LoginPelanggan($namauser,$katakunci)
+    {
+       
+        $this->db->from('pelanggan');
+        $this->db->where('nama_user',$namauser);
+        $this->db->where('password_user',$katakunci);
+        return $this->db->get()->row();
+    }
+    public function get_ProfilePelanggan($id)
+    {
+       
+        $this->db->from('pelanggan');
+        $this->db->where('id_pelanggan',$id);
+        return $this->db->get()->row();
+    }
+    //update profile pelanggan
+    public function updateProfile($data,$idpelanggan)
+    {
+        $this->db->where($idpelanggan);
+        return $this->db->update('pelanggan', $data);
+    }
+
+
 
 
 

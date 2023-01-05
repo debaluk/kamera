@@ -18,12 +18,13 @@
 								
 								<?php 
 								if ($this->session->userdata('customer_id') != null){ ?>
-								<li><i class="ti-user"></i><a href="<?= base_url('frontend/account') ?>"><?php echo $_SESSION['username'] ?></a></li>
-								<li><i class="ti-power-off"></i><a href="<?= base_url('frontend/auth/logout') ?>"> Logout</a>
+								<!--<li><i class="ti-user"></i><a href="<?= base_url('profilepelanggan') ?>"><?php echo $_SESSION['username'] ?></a></li>-->
+								<li><i class="ti-user"></i><a href="<?= base_url('akun') ?>"><?php echo " Akun" ?></a></li>
+								<li><i class="ti-power-off"></i><a href="<?= base_url('akun/logout') ?>"> Logout</a>
 								</li>
 								<?php } else { ?>
-								<li><i class="ti-user"></i><a href="<?= base_url('frontend/account') ?>"><?php echo " My Account" ?></a></li>
-								<li><i class="ti-power-off"></i><a href="<?= base_url('frontend/auth') ?>"> Login</a>
+								<li><i class="ti-user"></i><a href="<?= base_url('akun') ?>"><?php echo " Akun" ?></a></li>
+								<li><i class="ti-power-off"></i><a href="<?= base_url('akun/login') ?>"> Login</a>
 								</li>
 								<?php } ?>
 							</ul>

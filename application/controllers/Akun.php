@@ -44,8 +44,7 @@ class Akun extends CI_Controller {
 	{
 		$username = $this->db->escape_str($this->input->post('username'));
 		$password = $this->db->escape_str($this->input->post('password'));
-		$pass = hash('sha512', $password . $this->encryption_key);
-		$result = $this->M_login->login($username, $pass);
+		$result = $this->website->get_LoginPelanggan($username, $pass);
 		if ($result) {
 			$this->session->set_userdata('masuk', $result);
 			$output['status_code'] = 200;

@@ -37,7 +37,7 @@
                                 <?php echo $this->session->flashdata('message'); ?>
                                 <div class="form-group">
                                     <label class="small mb-1" for="inputEmailAddress">Nama User</label>
-                                    <input class="form-control py-4" id="inputEmailAddress" type="text" name="namusernamea_user" value="<?= set_value('username'); ?>" placeholder="Masukan Nama User" />
+                                    <input class="form-control py-4" id="inputEmailAddress" type="text" name="username" value="<?= set_value('username'); ?>" placeholder="Masukan Nama User" />
                                     <?= form_error('username', ' <small class="text-danger">', '</small>') ?>
                                 </div>
                                 <div class="form-group">

@@ -11,9 +11,8 @@ class Akun extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('masuk')) {
-			$IdSessionPelanggan='';
-			$data['profile']=$this->website->get_ProfilePelanggan($IdSessionPelanggan);		
+		if ($this->session->userdata('id_pelanggan') != null) {
+			$data['profile']=$this->website->get_ProfilePelanggan($_SESSION['id_pelanggan']);		
 			$this->load->view('frontend/akun',$data);
 			
 		} else {
@@ -44,20 +43,24 @@ class Akun extends CI_Controller {
 	{
 		$username = $this->db->escape_str($this->input->post('username'));
 		$password = $this->db->escape_str($this->input->post('password'));
-		$result = $this->website->get_LoginPelanggan($username, $pass);
-		if ($result) {
-			$this->session->set_userdata('masuk', $result);
-			$output['status_code'] = 200;
-			$output['title'] = "Berhasil";
-			$output['type'] = "success";
-			$output['message'] = "Anda Berhasil Login";
+		$customer = $this->website->get_LoginPelanggan($username, $password); 
+		if ($customer) {
+			$data =[
+				'id_pelanggan' => $customer->id_pelanggan,
+				'nama_user' => $customer->nama_user,
+				'nama_lengkap'=>$customer->nama_lengkap,
+				'alamat_lengkap' => $customer->alamat_lengkap,
+				'no_wa' => $customer->no_wa,
+				'email' => $customer->email,
+			];
+			$this->session->set_userdata($data);
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Berhasil login</div>');
+			redirect(base_url('welcome'));
 		} else {
-			$output['status_code'] = 400;
-			$output['title'] = "Gagal";
-			$output['type'] = "error";
-			$output['message'] = "Anda Gagal Login";
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Gagal login, coba kembali</div>');
+        	redirect(base_url('akun/login'));
 		}
-		echo json_encode($output);
+		
 	}
 
 	public function logout()

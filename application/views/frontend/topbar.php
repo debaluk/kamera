@@ -17,9 +17,9 @@
 							<ul class="list-main">
 								
 								<?php 
-								if ($this->session->userdata('customer_id') != null){ ?>
-								<!--<li><i class="ti-user"></i><a href="<?= base_url('profilepelanggan') ?>"><?php echo $_SESSION['username'] ?></a></li>-->
-								<li><i class="ti-user"></i><a href="<?= base_url('akun') ?>"><?php echo " Akun" ?></a></li>
+								if ($this->session->userdata('id_pelanggan') != null){ ?>
+								<!--<li><i class="ti-user"></i><a href="<?= base_url('profilepelanggan') ?>"><?php echo $_SESSION['nama_user'] ?></a></li>-->
+								<li><i class="ti-user"></i><a href="<?= base_url('akun') ?>"><?php echo $_SESSION['nama_user'] ?></a></li>
 								<li><i class="ti-power-off"></i><a href="<?= base_url('akun/logout') ?>"> Logout</a>
 								</li>
 								<?php } else { ?>
@@ -59,35 +59,17 @@
 						<!--/ End Search Form -->
 						<div class="mobile-nav"></div>
 					</div>
-					<div class="col-lg-8 col-md-7 col-12">
+					<div class="col-lg-10 col-md-7 col-12">
 						<div class="search-bar-top">
 							<div class="search-bar">
 								<form>
-									<input name="search" placeholder="Search Products Here....." type="search">
+									<input name="search" placeholder="Cari Kamera....." type="search">
 									<button class="btnn"><i class="ti-search"></i></button>
 								</form>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-3 col-12">
-						<div class="right-bar">
-							<!-- Search Form -->
-							<div class="sinlge-bar">
-								<a href="<?= base_url('frontend/account') ?>" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-							</div>
-							<div class="sinlge-bar shopping">
-								<a href="<?= base_url("frontend/cart")?>" class="single-icon"><i class="ti-bag"></i> <span class="total-count"><?php echo $this->cart->total_items()?></span></a>
-								<!-- Shopping Item -->
-								<div class="shopping-item">
-									<div class="dropdown-cart-header">
-										<span><?php echo $this->cart->total_items() . ' items' ?></span>
-										<a href="<?= base_url("frontend/cart")?>">View Cart</a>
-									</div>
-								</div>
-								<!--/ End Shopping Item -->
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

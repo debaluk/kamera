@@ -27,4 +27,13 @@ class Kamera extends CI_Controller {
 		$this->load->view('frontend/kamera_detail',$data);
 		
 	}
+
+	public function sewa($idkamera)
+	{
+
+		$data['detailkamera']=$this->website->get_KameraById($idkamera);		
+		$this->load->view('frontend/kamera_sewa',$data);
+		
+	}
+
 }

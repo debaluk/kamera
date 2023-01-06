@@ -50,17 +50,17 @@
 							<div class="owl-stage owl-refresh" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s;">
 								<div class="owl-item cloned">
 									<div class="single-slider">
-										<img src="http://localhost/kamera1/assets/image-kamera/kamera_7.jpg" alt="Canon EOS 4000D WIFI">
+										<img src="<?php echo base_url("/assets/images/". $detailkamera->gambar_utama) ?>" alt="<?php echo $detailkamera->nama_kamera;?>">
 									</div>
 								</div>
 								<div class="owl-item">
 									<div class="single-slider">
-                            			<img src="http://localhost/kamera1/assets/image-kamera/kamera_7.jpg" alt="Canon EOS 4000D WIFI">
+                            			<img src="<?php echo base_url("/assets/images/". $detailkamera->gambar_utama) ?>" alt="<?php echo $detailkamera->nama_kamera;?>">
                         			</div>
 								</div>
 								<div class="owl-item cloned">
 									<div class="single-slider">
-                            			<img src="http://localhost/kamera1/assets/image-kamera/kamera_7.jpg" alt="Canon EOS 4000D WIFI">
+                            			<img src="<?php echo base_url("/assets/images/". $detailkamera->gambar_utama) ?>" alt="<?php echo $detailkamera->nama_kamera;?>">
                         			</div>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
                 <div class="product-gallery">
                     <div class="quickview-slider-active">
                         <div class="single-slider">
-                            <img src="http://localhost/kamera1/assets/image-kamera/kamera_7.jpg" alt="Canon EOS 4000D WIFI">
+                            <img src="<?php echo base_url("/assets/images/". $detailkamera->gambar_utama) ?>" alt="<?php echo $detailkamera->nama_kamera;?>">
                         </div>
                        
                     </div>
@@ -107,7 +107,7 @@
                     <br>
                    
                     <div class="add-to-cart">
-                            <a href="#"><div class="btn btn-primary"> Sewa </div></a>                            <!-- <a href="#" class="btn min"><i class="ti-heart"></i></a> -->
+                            <a href="<?= base_url("kamera/sewa/".$detailkamera->id_kamera) ?>"><div class="btn btn-primary"> Sewa </div></a>                            <!-- <a href="#" class="btn min"><i class="ti-heart"></i></a> -->
                     </div>
 				</div>  
 			</div>  

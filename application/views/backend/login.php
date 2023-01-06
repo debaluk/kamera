@@ -35,7 +35,8 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login Admin </h1>
                                     </div>
-                                    <form method="POST" action="<?php echo site_url('admin/aksi_login'); ?>" class="user">
+                                    <form method="POST" action="<?php echo site_url('admin/login/aksi_login'); ?>" class="user">
+                                    <?php echo $this->session->flashdata('message'); ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username">
                                         </div>

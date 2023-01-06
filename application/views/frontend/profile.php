@@ -65,17 +65,41 @@
 				</div>
 			</div>
 		</div>
-		<!--/ End Single Slider -->
-		
-		<!-- Start Product Area -->
-		<div class="product-area section">
-			<div class="container">
-				
-			</div>
-		</div>
-		
-		<!-- Start Footer Area -->
-		<?php $this->load->view("frontend/footer.php") ?>
+	</section>	
+	<!--/ End Single Slider -->
+	
+	<section class="blog-single section">
+        <div class="container">
+            <div class="">
+                <div class="col-lg-12 col-12">
+                    <div class="blog-single-main">                       
+						<div class="col-12">
+							<div class="blog-detail">
+								<h2 class="blog-title">Profile</h2>
+								
+								<div class="content">
+									<p>
+									<?php echo $profile->profile;?>
+									</p>
+									
+									<div class="contact">
+										<ul>
+											<li><?php echo $profile->alamat;?></li>
+											<li><a href="#"><i class="ti-facebook"></i><?php echo $profile->alamat_fb;?></a></li>
+											<li><a href="#"><i class="ti-instagram"></i><?php echo $profile->alamat_ig;?></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<!-- Start Footer Area -->
+	<?php $this->load->view("frontend/footer.php") ?>
 		
 </body>
 

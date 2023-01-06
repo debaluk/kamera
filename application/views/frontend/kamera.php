@@ -39,43 +39,80 @@
 		</div>
 	</div>
 	<!-- End Breadcrumbs -->
-	<!-- Slider Area -->
-	<section class="hero-slider">
-		<!-- Single Slider -->
-		<div class="single-slider" style="background-image: url('https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1534396130/wbhx8zcawpdev96xmzra.jpg'); background-blend-mode: multiply; box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);">
-			<div class="layer">
-				<div class="container">
-					<div class="row no-gutters">
-						<div class="col-lg-9 offset-lg-3 col-12">
-							<div class="text-inner">
+	
+	<!-- Start Product Area -->
+	<div class="product-area section">
+		<div class="container">
+			<div class="col-12">
+				<div class="section-title" id="kam">
+					<h2>Kamera</h2>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="product-info">
+					<div class="nav-main">
+						<!-- Tab Nav -->
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<?php 
+							$x=0;
+							foreach ($merek as $m) : ?>
+							<li class="nav-item"><a class="nav-link <?php if($x==0) { echo "active"; } ?>" data-toggle="tab" href="#<?php echo $m->id_merek;?>" role="tab"><?php echo $m->nama_merek;?></a></li>
+							<?php
+								$x++;
+							endforeach; ?>
+						</ul>
+					</div>
+
+					<div class="tab-content" id="myTabContent">
+						
+						<?php 
+						$xtab=0;
+						foreach ($merek as $tabm) : ?>
+						<div class="tab-pane fade show <?php if($xtab==0) { echo "active"; } ?>" id="<?php echo $tabm->id_merek;?>" role="tabpanel">
+							<div class="tab-single">
 								<div class="row">
-									<div class="col-lg-7 col-12">
-										<div class="hero-text">
-											<h1 style="color: #d44648;"><span>PROMO KEMERDEKAAN </span> Rayakan Kemerdekaan dengan <br> Diskon 20%</h1>
-											<p>Bebaskan dirimu dari tugas PADSI <br> diskon 20% setiap peminjaman kamera</p>
-											<div class="button">
-												<a class="btn">KODE PROMO: MERDEKATUGAS</a>
+									<!--kamera per merek -->
+									<?php			
+									$kameraproduk = $this->db->select("*")
+										->where('id_merek',$tabm->id_merek)
+									  	->get("kamera");
+									foreach ($kameraproduk->result() as $key => $datakamera) 
+									{
+
+								    ?>
+									<div class="col-xl-3 col-lg-4 col-md-4 col-12">
+										<div class="single-product">
+											<div class="product-img">
+												<a href="<?= base_url("kamera/detail/" . $datakamera->id_kamera); ?>">
+													<img class="default-img" src="<?php echo base_url("/assets/images/". $datakamera->gambar_utama) ?>" alt="#">
+													
+												</a>
+												
+											</div>
+											<div class="product-content"> <div align="center">
+												<h3><a href="<?= base_url("kamera/detail/" . $datakamera->id_kamera); ?>"><?php echo $datakamera->nama_kamera;?></a></h3>
+												<div class="product-price">
+													<span>Rp. <?php echo $datakamera->harga_sewa;?></span>
+												</div>
+									</div>
 											</div>
 										</div>
 									</div>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
+						<?php
+						$xtab++;
+						endforeach; ?>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--/ End Single Slider -->
-		
-		<!-- Start Product Area -->
-		<div class="product-area section">
-			<div class="container">
-				
-			</div>
-		</div>
-		
-		<!-- Start Footer Area -->
-		<?php $this->load->view("frontend/footer.php") ?>
+	</div>
+	
+	<!-- Start Footer Area -->
+	<?php $this->load->view("frontend/footer.php") ?>
 		
 </body>
 

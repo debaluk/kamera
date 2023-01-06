@@ -12,8 +12,19 @@ class Kamera extends CI_Controller {
 	public function index()
 	{
 
+		$data['merek']=$this->website->get_Semuamerek();	
 		$data['kamera']=$this->website->get_Semuakamera();		
 		$this->load->view('frontend/kamera',$data);
+		
+	}
+
+	public function detail($idkamera)
+	{
+
+		$data['merek']=$this->website->get_Semuamerek();	
+		$data['kamera']=$this->website->get_Semuakamera();
+		$data['detailkamera']=$this->website->get_KameraById($idkamera);		
+		$this->load->view('frontend/kamera_detail',$data);
 		
 	}
 }

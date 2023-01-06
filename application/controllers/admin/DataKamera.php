@@ -11,6 +11,7 @@ class Datakamera extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Datamerek_model', 'merek');
         $this->load->model('Datakamera_model', 'kamera');
     }
     public function index()
@@ -46,12 +47,12 @@ class Datakamera extends CI_Controller
                 $data = array('upload_data' => $this->upload->data()); //variabel data menampung nilai proses upload
                 $filename = $data['upload_data']['file_name']; //nama file diambil dari nama file proses upload
                 $data_update = array(
-                    'id_kamera' => $this->input->post('id_kamera'),
                     'nama_kamera' => $this->input->post('nama_kamera'),
                     'id_merek' => $this->input->post('id_merek'),
                     'spesifikasi' => $this->input->post('spesifikasi'),
                     'stok'   => $this->input->post('stok'),
-                    'harga_sewa'   => $this->input->post('harga_sewa')
+                    'harga_sewa'   => $this->input->post('harga_sewa'),
+                    'gambar_utama'   => $filename
                 );
                 $this->kamera->simpan($data_update, 'kamera');
                 redirect('admin/datakamera');
@@ -61,19 +62,57 @@ class Datakamera extends CI_Controller
 
     public function tambahkamera()
     {
-        // $data['merek'] = $this->merek->list_merek();
-        $this->load->view('backend/tambahkamera');
+        $data['merek'] = $this->merek->list_merek();
+        $this->load->view('backend/tambahkamera',$data);
     }
 
-    public function editkamera()
+    public function editkamera($id)
     {
-        // $data['kategori'] = $this->kategori->list_kategori();
-        //$data['berita'] = $this->berita->ambilberita(array('idberita' => $idberita));
-        $this->load->view('backend/editkamera');
+        $data['merek'] = $this->merek->list_merek();
+        $data['kamera'] = $this->kamera->detail_kamera($id);
+        $this->load->view('backend/editkamera',$data);
     }
 
     public function update()
     {
+        if (!empty($_FILES)) {
+            $config['upload_path']          = getcwd() . '/assets/images/'; //lokasi penyimpan file yang diupload ada difolder upload
+            $config['allowed_types']        = 'gif|jpg|png|jpeg|PNG'; //type file yang diizinkan untuk diupload
+            $config['encrypt_name']         = true; // encrypt_name = true artinya file yang diupload diencrypt secara acak jika false nama filenya utuh sesuai nama filenya
+            //proses upload sesuai dengan konfigurasi ( keterangan diatasnya )
+            $this->load->library('upload', $config);
+            //jika tidak berhasil upload gambar akan muncul pesan error " contoh upload doc/pdf< karena tidak sesuai dengan konfigurasi diawal
+            if (!$this->upload->do_upload('gambar')) {
+                $error = 'File Yang Anda Upload Tidak Sesuai!'; /*array('error' => $this->upload->display_errors());*/
+                print_r($error);
+            } else {
+                //data sama dengan proses upload
+                $data = array('upload_data' => $this->upload->data()); //variabel data menampung nilai proses upload
+                $filename = $data['upload_data']['file_name']; //nama file diambil dari nama file proses upload
+                $data_update = array(
+                    'nama_kamera' => $this->input->post('nama_kamera'),
+                    'id_merek' => $this->input->post('id_merek'),
+                    'spesifikasi' => $this->input->post('spesifikasi'),
+                    'stok'   => $this->input->post('stok'),
+                    'harga_sewa'   => $this->input->post('harga_sewa'),
+                    'gambar_utama'   => $filename
+                );
+                $this->kamera->update($this->input->post('id_kamera'),$data_update, 'kamera');
+                redirect('admin/datakamera');
+            }
+        }
+        else
+        {
+            $data_update = array(
+                'nama_kamera' => $this->input->post('nama_kamera'),
+                'id_merek' => $this->input->post('id_merek'),
+                'spesifikasi' => $this->input->post('spesifikasi'),
+                'stok'   => $this->input->post('stok'),
+                'harga_sewa'   => $this->input->post('harga_sewa')
+            );
+            $this->kamera->update($this->input->post('id_kamera'),$data_update, 'kamera');
+            redirect('admin/datakamera');
+        }
     }
     public function hapus($id)
     {

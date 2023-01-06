@@ -11,20 +11,17 @@
             </div>
             <div class="card row">
                 <div class="card-body">
-                    <form data-parsley-validate action="<?php echo base_url('admin/datakamera/simpan') ?>" method="post" enctype="multipart/form-data">
+                    <form data-parsley-validate action="<?php echo base_url('admin/datakamera/update') ?>" method="post" enctype="multipart/form-data">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="form-label">Nama</label>
-                                <input type="hidden" name="iduser" id="id_kamera" value="<?= $this->session->userdata('id_kamera') ?>" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">merek</label>
+                            <input type="hidden" name="iduser" id="id_kamera" value="<?= $kamera->id_kamera ?>" class="form-control">
+                                <label class="form-label">Pilih Merek</label>
                                 <select class="form-control" name="id_merek" required="required">
                                     <option value="">Pilih Merek</option>
                                     <?php foreach ($merek as $key => $datamerek) :
 
-                                        if ($kid == $datamerek->merek_id) {
-                                            echo '<option value="' . $kid . '" selected>' . $datamerek->nama_merek . '</option>';
+                                        if ($kamera->id_merek == $datamerek->id_merek) {
+                                            echo '<option value="' . $kamera->id_merek . '" selected>' . $datamerek->nama_merek . '</option>';
                                         } else {
                                             echo '<option value="' . $datamerek->id_merek . '">' . $datamerek->nama_merek . '</option>';
                                         }
@@ -32,22 +29,27 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label class="form-label">Nama Kamera</label>
+                                <input type="text" class="form-control" name="nama_kamera" value="<?php echo $kamera->nama_kamera;?>" required>
+                            </div>
+                            
+                            <div class="form-group">
                                 <label class="form-label">Spesifikasi</label>
-                                <textarea style="white-space: pre-line;" rows="10" class="form-control" name="spesifikasi" required></textarea>
+                                <textarea style="white-space: pre-line;" rows="10" class="form-control" name="spesifikasi" required><?php echo $kamera->spesifikasi;?></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Stok</label>
-                                <input type="text" class="form-control" name="Stok" required>
+                                <input type="text" class="form-control" name="Stok" value="<?php echo $kamera->stok;?>" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Harga Sewa</label>
-                                <input type="text" class="form-control" name="harga Sewa" required>
+                                <input type="number" class="form-control" name="harga Sewa" value="<?php echo $kamera->harga_sewa;?>" required>
                             </div>
                             <div class="form-group">
                                 <label>Gambar</label>
-                                <input type="file" name="gambar" accept="image/*" required><br>
-                                <?php if (!empty($data[0]->gambar)) : ?>
-                                    <img src="<?php echo base_url('assets/images/' . $data[0]->gambar); ?>" width="100" alt="">
+                                <input type="file" name="gambar" accept="image/*" ><br>
+                                <?php if (!empty($kamera->gambar_utama)) : ?>
+                                    <img src="<?php echo base_url('assets/images/' .$kamera->gambar_utama); ?>" width="100" alt="">
                                 <?php endif; ?>
                             </div>
                             <div class="form-group">

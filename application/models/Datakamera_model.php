@@ -6,11 +6,10 @@ class Datakamera_model extends CI_Model
     public function list_kamera()
     {
         $this->db->from('kamera');
-        $this->db->join('merek', 'kamera.id_merek = merek.id_merek', 'LEFT'); //join table, untuk menampilkan nama kategori dari tabel kategori
+        $this->db->join('merek', 'kamera.id_merek = merek.id_merek', 'LEFT'); 
         $this->db->order_by('id_kamera', 'ASC');
         return $this->db->get()->result();
 
-        //select berita.*,kategori.* from berita,kategori where berita.idkategori=kategori.kategori_id order by idberita desc
     }
 
     //simpan Merek
@@ -26,6 +25,14 @@ class Datakamera_model extends CI_Model
         return $this->db->update($table, $data);
     }
 
+    public function detail_kamera($id)
+    {
+        $this->db->from('kamera');
+        $this->db->join('merek', 'kamera.id_merek = merek.id_merek', 'LEFT'); 
+        $this->db->where('id_kamera',$id);
+        return $this->db->get()->row();
+
+    }
 
     //hapus Merek
     public function hapus($id)

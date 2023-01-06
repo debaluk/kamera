@@ -12,18 +12,15 @@
             <div class="card row">
                 <div class="card-body">
                     <form data-parsley-validate action="<?php echo base_url('admin/datakamera/simpan') ?>" method="post" enctype="multipart/form-data">
+                    
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="form-label">Nama</label>
-                                <input type="hidden" name="iduser" id="id_kamera" value="<?= $this->session->userdata('id_kamera') ?>" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">merek</label>
+                                <label class="form-label">Pilih Merek</label>
                                 <select class="form-control" name="id_merek" required="required">
                                     <option value="">Pilih Merek</option>
                                     <?php foreach ($merek as $key => $datamerek) :
-
-                                        if ($kid == $datamerek->merek_id) {
+                                        $kid=0;
+                                        if ($kid == $datamerek->id_merek) {
                                             echo '<option value="' . $kid . '" selected>' . $datamerek->nama_merek . '</option>';
                                         } else {
                                             echo '<option value="' . $datamerek->id_merek . '">' . $datamerek->nama_merek . '</option>';
@@ -32,16 +29,22 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label class="form-label">Nama Kamera</label>
+                               
+                                <input type="text" name="nama_kamera" id="nama_kamera" value="" class="form-control">
+                            </div>
+                           
+                            <div class="form-group">
                                 <label class="form-label">Spesifikasi</label>
                                 <textarea style="white-space: pre-line;" rows="10" class="form-control" name="spesifikasi" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Stok</label>
-                                <input type="text" class="form-control" name="Stok" required>
+                                <input type="number" class="form-control" name="stok" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Harga Sewa</label>
-                                <input type="text" class="form-control" name="harga Sewa" required>
+                                <input type="number" class="form-control" name="harga_sewa" required>
                             </div>
                             <div class="form-group">
                                 <label>Gambar</label>

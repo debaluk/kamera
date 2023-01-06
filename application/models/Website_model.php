@@ -31,6 +31,7 @@ class Website_model extends CI_Model
     {
        
         $this->db->from('kamera');
+        $this->db->join('merek','merek.id_merek=kamera.id_merek');
         $this->db->where('id_kamera',$id);
         return $this->db->get()->row();
     }

@@ -92,7 +92,7 @@
 											<div class="product-content"> <div align="center">
 												<h3><a href="<?= base_url("kamera/detail/" . $datakamera->id_kamera); ?>"><?php echo $datakamera->nama_kamera;?></a></h3>
 												<div class="product-price">
-													<span>Rp. <?php echo $datakamera->harga_sewa;?></span>
+													<span>Rp. <?php echo number_format($datakamera->harga_sewa, 0, ',', '.'); ?></span>
 												</div>
 									</div>
 											</div>

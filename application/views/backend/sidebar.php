@@ -44,7 +44,7 @@
 			<span>Data kamera</span></a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link" href="<?php echo base_url('admin/dataprofile') ?>">
+		<a class="nav-link" href="<?php echo base_url('admin/profile') ?>">
 			<i class="fas fa-fw fa-table"></i>
 			<span>Data Profile</span></a>
 	</li>

@@ -22,4 +22,10 @@ class Datapeminjaman_model extends CI_Model
 
         return $this->db->get()->result();
     }
+
+    public function hapus($id)
+    {
+        $this->db->where($id);
+        return $this->db->delete('peminjaman');
+    }
 }

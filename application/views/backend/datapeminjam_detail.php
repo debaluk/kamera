@@ -11,11 +11,11 @@
             </div>
             <div class="card row">
                 <div class="card-body">
-                    <form data-parsley-validate action="<?php echo base_url('admin/profile/update') ?>" method="post" enctype="multipart/form-data">
+                    <form data-parsley-validate action="<?php echo base_url('admin/datapeminjaman/update') ?>" method="post" enctype="multipart/form-data">
                         <div class="col-sm-12">
                         <?php echo $this->session->flashdata('message'); ?>
                             <div class="form-group">
-                            <input type="hidden" name="id_profile" id="id_profile" value="<?= $profile->id_profile ?>" class="form-control">
+                            <input type="hidden" name="id_peminjaman" id="id_peminjaman" value="<?= $profile->id_peminjaman ?>" class="form-control">
                             
                             <div class="form-group">
                                 <label class="form-label">Profile</label>

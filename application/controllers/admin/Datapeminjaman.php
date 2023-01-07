@@ -30,8 +30,8 @@ class Datapeminjaman extends CI_Controller
     
     public function hapus($id)
     {
-        $this->kamera->hapus(array('id_peminjaman' => $id)); {
-            redirect('admin/datapeminjam');
+        $this->datasewa->hapus(array('id_peminjaman' => $id)); {
+            redirect('admin/datapeminjaman');
         }
     }
 }
